@@ -1,4 +1,4 @@
- # CHAT
+ # chat
 
  a small chat app to explore golang
 
