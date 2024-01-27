@@ -34,7 +34,6 @@ type Message struct {
 	Text string
 }
 
-
 // serving thread
 func server(messages chan Message) {
 	conns := map[string]net.Conn{}
@@ -83,7 +82,6 @@ func server(messages chan Message) {
 
 // client thread
 func client(conn net.Conn, messages chan Message) {
-
 	log.Printf("New go-routine spawned for %s\n", conn.RemoteAddr())
 	buff := make([]byte, 512)
 
@@ -94,7 +92,7 @@ func client(conn net.Conn, messages chan Message) {
 				Type: ClientLeft,
 				Conn: conn,
 			}
-      break
+			break
 		} else {
 
 			message := string(buff[:n])
@@ -112,9 +110,8 @@ func client(conn net.Conn, messages chan Message) {
 
 func main() {
 	ln, err := net.Listen("tcp", ":"+PORT)
-
 	if err != nil {
-		//handle err
+		// handle err
 		log.Fatalf("ERROR: could not listen to port %s: %s\n", PORT, err)
 	}
 
@@ -130,7 +127,6 @@ func main() {
 		if err != nil {
 			// handle err
 			log.Printf("ERROR: couldnt accept a connection: %s\n", err)
-
 		}
 
 		// add to channel
